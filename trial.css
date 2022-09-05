@@ -4,29 +4,30 @@
     font-size: 70px;
     font-style: italic;
     text-align-last: center;
-    margin-left: 20%;
+    margin-left: 12%;
     position: absolute;
     margin-top: 0px;
+    animation-iteration-count: 2;
     }
     #spin:after {
     content:"";
-    animation: spin 2s infinite;
+    animation: spin 3s infinite;
     }
     @keyframes spin {
-    0% { content:"Orewa"; color:pink;   font-size: 70px;}
-    50% { content:"Orewa"; color:pink;   font-size: 70px;}
-    100% { content:"Scenic"; color:black;   font-size: 75px;}
-    200% { content: "Scenic"; color:black;   font-size: 75px;}
+    0% { content:"Orewa"; color:red;   font-size: 70px;}
+    25% { content:"Orewa"; color:yellowgreen;   font-size: 75px;}
+    50% { content:"Scenic"; color:black;   font-size: 80px;}
+    75% { content:"Beauty"; color:purple; font-size: 85px;}
+    90% { content: "Scenic"; color:rgb(243, 106, 1);   font-size: 90px;}
     }
-
-        #astropup {
+        #ball {
             position:relative;
-            left: 200px;
+            left: 220px;
             top: 150px;
-            animation-name: movepup;
-            animation-duration: 8s;
-            animation-delay: 3s;
-            animation-iteration-count: 2;
+            animation-name: moveball;
+            animation-duration: 5s;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
             transition-timing-function: ease-in;
         
         }
@@ -37,11 +38,11 @@
             90% { margin-left: 30px; transform: (0deg);}
             100% { margin-left: -10px; transform: rotate(90deg);}
         } */
-      @keyframes movepup {
-            0% { margin-right: 20px; transform: rotate(5deg);}
-            50% { margin-right: 60px; transform: rotate(45deg);}
-            100% { margin-right: 90px; transform: rotate(5deg);}
-        }
+      @keyframes moveball {
+        0% {opacity: 1; margin-left: 320px;}
+        100% {opacity: 0; margin-left: -50px;}
+           }
+        
 
 
 
@@ -71,4 +72,18 @@
             transition: height 0.9s ease;
           }
 
+          #surfboard {
+            position: absolute;
+            bottom: 300px;
+            animation: moveBoard ease 3s;
+            animation-iteration-count: 5;
+            animation-fill-mode: forwards;
+            animation-name: moveBoard;
+            animation-duration: 5s;
+          }
+          @keyframes moveBoard {
+            0% { bottom: 200px;  }
+            50% { bottom: 400px ; opacity: 1; }
+            100% {  bottom: 550px; opacity: 0; } 
+        }
         

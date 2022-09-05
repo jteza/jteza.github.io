@@ -72,22 +72,22 @@
         <div>
           
         <input
-          value=""
+          value="yes"
           type="radio"
-          id="cookingFacilitiesYes"
+          id="cookingFacilities1"
           name="cookingFacilities"
-          onchange="changeInputHandlerSecondPage()"
+          onclick="changeInputHandlerSecondPage('yes')"
           
-        /><label for="cookingFacilitiesYes">Yes </label>
+        /><label for="cookingFacilities">Yes </label>
         <br>
         <input
-          value=""
+          value="no"
           type="radio"
-          id="cookingFacilitiesNo"
+          id="cookingFacilities2"
           name="cookingFacilities"
-          onchange="changeInputHandlerSecondPage()"
+          onclick="changeInputHandlerSecondPage('no')"
           
-        /><label for="cookingFacilitiesNo">No </label>
+        /><label for="cookingFacilities">No </label>
         </div>
         
       </div>
@@ -99,6 +99,26 @@
           name="phone"
           onchange="changeInputHandlerSecondPage()"
         />
+      </div>
+      <div>
+        <label for="swimmingGoggles">Select items you need: </label>
+        <br>
+        <label for="swimmingGoggles"> <input
+          value=""
+          type="checkbox"
+          id="swimmingGoggles"
+          name="swimmingGoggles"
+          onchange="changeInputHandlerSecondPage()"
+        /> Swimming Goggles</label>
+        <label>
+          <br>
+        <input
+          value=""
+          type="checkbox"
+          id="surfBoard"
+          name="surfBoard"
+          onchange="changeInputHandlerSecondPage()"
+        /> Surf board</label>
       </div>
       <div>
         <button onclick="goToPreviousPage()">Previous</button>
@@ -129,8 +149,17 @@
         document.getElementById('adults').value = localStorage.getItem('adults');
         document.getElementById('children').value = localStorage.getItem('children');
 
-        document.getElementById('cookingFacilities').value = localStorage.getItem('cookingFacilities');
+        const cf = localStorage.getItem('cookingFacilities') ;
+        if(cf=='yes'){
+          document.getElementById('cookingFacilities1').setAttribute('checked',true)
+        } 
+        else if (cf=='no') document.getElementById('cookingFacilities2').setAttribute('checked',true)
+        
 
+        const isgog = localStorage.getItem('swimmingGoggles') === 'true' ?true:false;
+        const issb = localStorage.getItem('surfBoard')=== 'true' ?true:false;
+        document.getElementById('swimmingGoggles').setAttribute('checked', isgog);
+        document.getElementById('surfBoard').setAttribute('checked', issb);
         /*3rd page*/
 
         /*4th page*/
@@ -143,17 +172,32 @@
         localStorage.setItem('stayDate', stayDate.toString());
         localStorage.setItem('lastName', lastName);
       }
-      function changeInputHandlerSecondPage() {
+      function changeInputHandlerSecondPage(inp) {
         let email = document.getElementById('email').value;
         let adults = document.getElementById('adults').value;
         let children = document.getElementById('children').value;
         let phone = document.getElementById('phone').value;
-        let cookingFacilities = document.getElementById('cookingFacilities').value;
+        const isCFYes = inp;
+        const isCFNo = inp;
+       
+       
+        
+        let swimmingGoggles = document.getElementById('swimmingGoggles').value;
+        let surfBoard = document.getElementById('surfBoard').value;
         localStorage.setItem('email', email);
         localStorage.setItem('adults', adults);
         localStorage.setItem('children', children);
         localStorage.setItem('phone', phone);
-        localStorage.setItem('cookingFacilities', cookingFacilities);
+        if(isCFYes === 'yes') localStorage.setItem('cookingFacilities', 'yes');
+        if(isCFNo === 'no') localStorage.setItem('cookingFacilities', 'no');
+        // localStorage.setItem('cookingFacilities', cookingFacilities);
+        const isgog = document.getElementById('swimmingGoggles').checked;
+        if(isgog === 'true') localStorage.setItem('swimmingGoggles', isgog);
+        else localStorage.setItem('swimmingGoggles', false);
+
+        const isSurfBoard = document.getElementById('surfBoard').checked;
+        if(isSurfBoard === 'true') localStorage.setItem('surfBoard', isSurfBoard);
+        localStorage.setItem('surfBoard', false);
         //test
       }
       window.onload = dataSettingOnload();
